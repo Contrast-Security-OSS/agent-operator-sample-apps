@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         variants:
-        - type: aspnetcoreapp
-          dockerfile: "src/aspnetcoreapp/Dockerfile"
-          context: "src/aspnetcoreapp"
+        - type: aspnetcore
+          dockerfile: "src/aspnetcore/Dockerfile"
+          context: "src/aspnetcore"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,5 +36,5 @@ jobs:
           file: ${{ matrix.variants.dockerfile }}
           context: ${{ matrix.variants.context }}
           tags: ${{ steps.meta.outputs.tags }}
-          #push: true
+          push: true
 
