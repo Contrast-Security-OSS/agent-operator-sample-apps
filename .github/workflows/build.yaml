@@ -2,7 +2,7 @@ name: "Sample Apps Build"
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   docker:
     strategy:
