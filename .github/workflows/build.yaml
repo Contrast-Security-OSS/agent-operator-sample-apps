@@ -30,6 +30,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: docker.io/contrast/sample-app-${{ matrix.variants.type }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
