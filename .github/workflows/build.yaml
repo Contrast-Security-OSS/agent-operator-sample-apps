@@ -13,8 +13,6 @@ jobs:
         - type: aspnetcore
           dockerfile: "src/aspnetcore/Dockerfile"
           context: "src/aspnetcore"
-          readme: "src/aspnetcore/README.md"
-          description: "ASP.NET Core Sample App without trimming"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -42,11 +40,3 @@ jobs:
           context: ${{ matrix.variants.context }}
           tags: ${{ steps.meta.outputs.tags }}
           push: true
-      - name: Update Docker Hub Description
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PAT }}
-          repository: contrast/sample-app-${{ matrix.variants.type }}
-          short-description: ${{ matrix.variants.description }}
-          readme-filepath: ${{ matrix.variants.readme }}
