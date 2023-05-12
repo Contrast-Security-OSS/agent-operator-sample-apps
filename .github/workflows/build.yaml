@@ -32,6 +32,7 @@ jobs:
           images: docker.io/contrast/sample-app-${{ matrix.variants.type }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=main,enable={{is_default_branch}}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
