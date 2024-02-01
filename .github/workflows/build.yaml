@@ -13,6 +13,15 @@ jobs:
         - type: aspnetcore
           dockerfile: "src/aspnetcore/Dockerfile"
           context: "src/aspnetcore"
+        - type: fastify-esm
+          dockerfile: "src/fastify-esm/Dockerfile"
+          context: "src/fastify-esm"
+        - type: flask
+          dockerfile: "src/flask/Dockerfile"
+          context: "src/flask"
+        - type: php
+          dockerfile: "src/php/Dockerfile"
+          context: "src/php"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
