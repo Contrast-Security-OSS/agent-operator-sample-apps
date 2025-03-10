@@ -13,18 +13,25 @@ jobs:
         - type: aspnetcore
           dockerfile: "src/aspnetcore/Dockerfile"
           context: "src/aspnetcore"
+          platforms: "linux/amd64,linux/arm64"
         - type: fastify-esm
           dockerfile: "src/fastify-esm/Dockerfile"
           context: "src/fastify-esm"
+          platforms: "linux/amd64,linux/arm64"
         - type: flask
           dockerfile: "src/flask/Dockerfile"
           context: "src/flask"
+          platforms: "linux/amd64,linux/arm64"
         - type: php
           dockerfile: "src/php/Dockerfile"
           context: "src/php"
+          platforms: "linux/amd64,linux/arm64"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
       - uses: docker/setup-buildx-action@v2
         with:
           install: true
@@ -45,6 +52,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          platforms: ${{ matrix.variants.platforms }}
           file: ${{ matrix.variants.dockerfile }}
           context: ${{ matrix.variants.context }}
           tags: ${{ steps.meta.outputs.tags }}
