@@ -1,5 +1,5 @@
 
-FROM --platform=$BUILDPLATFORM python:3-slim
+FROM --platform=$BUILDPLATFORM python:3-slim@sha256:5b3879b6f3cb77e712644d50262d05a7c146b7312d784a18eff7ff5462e77033
 
 WORKDIR /app
 
